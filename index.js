@@ -11,22 +11,29 @@ var dbconnect = mongoose.connect(Dburl, { useNewUrlParser: true, useUnifiedTopol
     .catch((err) => {
         console.log(err);
     })
-
+//connecting to the bot using bot token
 const Bot = new telegraf(process.env.Bot_Token);
 
-Bot.start((res) => res.reply("Welcome"));
+//specifies the message to be displayed upon start
+Bot.start((res) => res.reply("Welcome \n-type /help to see the available commands"));
+
+//specifies the response when user sends the message hi
 Bot.hears('hi', (res) => res.reply("how are you?"));
+
+//specifies the response for the command /help
 Bot.command('help', (ctx) => {
     ctx.reply("List of Available commands are:\n- /List_all : Displays all available books \n- /request <book name> : Returns the link of the ebook if exists\n"
 
     );
 })
+
+//specifies the response for the command /request
 Bot.command('request', (ctx) => {
-    //ctx.reply('Hello');
+
     let message = ctx["update"]["message"]["text"];
-    let bname = message.substring(9, message.length);
+    let bname = message.substring(9, message.length); //sorts the book name
     if (bname != "") {
-        //console.log(bname);
+        //connecting to database
         mongoose.connect(Dburl, { useNewUrlParser: true, useUnifiedTopology: true })
             .then((result) => {
                 Link.find()
@@ -45,7 +52,6 @@ Bot.command('request', (ctx) => {
                     .catch((err) => {
                         console.log(err);
                     })
-                //ctx.reply(Link.find());
             })
             .catch((err) => {
                 console.log(err);
@@ -69,7 +75,7 @@ Bot.command('List_all', (ctx) => {
                     result.forEach((data) => {
                         message += data["title"] + '\n';
                     })
-                    ctx.reply(message);
+                    ctx.reply(message);//replies the list of books available as a message
 
                 })
                 .catch((err) => {
@@ -102,13 +108,6 @@ Bot.command('add', (ctx) => {
         ctx.deleteMessage();
     });
 
-
-
-
-
-
-
 });
-
 
 Bot.launch();
