@@ -22,7 +22,7 @@ Bot.hears('hi', (res) => res.reply("how are you?"));
 
 //specifies the response for the command /help
 Bot.command('help', (ctx) => {
-    ctx.reply("List of Available commands are:\n- /List_all : Displays all available books \n- /request <book name> : Returns the link of the ebook if exists\n"
+    ctx.reply("Available commands are:\n- /List_all : Displays all available books \n- /request <book name> : Returns the link of the ebook if exists\n"
 
     );
 })
@@ -44,7 +44,8 @@ Bot.command('request', (ctx) => {
                             if (data["title"] == bname) {
                                 //console.log(data["title"]);
                                 //console.log(data["link"]);
-                                ctx.reply(data["link"]);
+                                console.log(data.link);
+                                ctx.reply(data.link);
                             }
                         })
 
