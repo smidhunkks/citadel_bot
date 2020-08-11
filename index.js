@@ -15,14 +15,14 @@ var dbconnect = mongoose.connect(Dburl, { useNewUrlParser: true, useUnifiedTopol
 const Bot = new telegraf(process.env.Bot_Token);
 
 //specifies the message to be displayed upon start
-Bot.start((res) => res.reply("Welcome \n-type /help to see the available commands"));
+Bot.start((res) => res.reply("Welcome💫 \n-type /help to see all the available commands"));
 
 //specifies the response when user sends the message hi
 Bot.hears('hi', (res) => res.reply("how are you?"));
 
 //specifies the response for the command /help
 Bot.command('help', (ctx) => {
-    ctx.reply("Available commands are:\n- /List_all : Displays all available books \n- /request <book name> : Returns the link of the ebook if exists\n"
+    ctx.reply("Available commands are💥:\n- /List_all : Displays all available books \n- /request <book name> : Returns the link of the ebook if exists\n"
 
     );
 })
