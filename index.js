@@ -10,7 +10,7 @@ app.get('/',(req,res)=>{
     console.log("starting")
 })
 app.listen(port,()=>{
-    console.log(`running on $port`);
+    console.log(`running on ${port}`);
 });
 const Dburl = process.env.DB_url;
 var dbconnect = mongoose.connect(Dburl, { useNewUrlParser: true, useUnifiedTopology: true })
