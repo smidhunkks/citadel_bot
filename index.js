@@ -1,8 +1,17 @@
+const express=require('express');
+const app=express();
 const telegraf = require('telegraf');
 const mongoose = require('mongoose');
 const Link = require('./model/schema');
 require('dotenv').config();
 
+const port=process.env.PORT || 3000
+app.get('/',(req,res)=>{
+    console.log("starting")
+})
+app.listen(port,()=>{
+    console.log(`running on $port`);
+});
 const Dburl = process.env.DB_url;
 var dbconnect = mongoose.connect(Dburl, { useNewUrlParser: true, useUnifiedTopology: true })
     .then((result) => {
