@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const linkSchema = new Schema({
+const linkSchema = new Schema(
+    {
     title: {
         type: String,
         required: true
@@ -10,7 +11,11 @@ const linkSchema = new Schema({
         type: String,
         required: true
     }
-}, { timestamps: true });
+},
+ { 
+     timestamps: true 
+}
+ );
 
 const Link=mongoose.model("Link",linkSchema);
 module.exports=Link;
